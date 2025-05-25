@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinik Derma9</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, goldenrod, #cfb000);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            margin: 5px auto;
+            padding: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .icon-book {
+            background: linear-gradient(135deg, #f3db51, goldenrod);
+        }
+
+        .icon-tag {
+            background: linear-gradient(135deg, #f3db51, goldenrod);
+        }
+
+        .icon svg {
+            width: 32px;
+            height: 32px;
+            fill: rgb(0, 0, 0);
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 15px;
+            color: #000000;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #f3db51, goldenrod);
+            color: rgb(0, 0, 0);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #f3db51, goldenrod);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 30px 20px;
+                margin-bottom: 15px;
+            }
+            
+            .card-title {
+                font-size: 20px;
+            }
+            
+            .card-description {
+                font-size: 14px;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 13px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 500px;
+            }
+            
+            .card {
+                padding: 50px 40px;
+            }
+            
+            .card-title {
+                font-size: 24px;
+            }
+            
+            .card-description {
+                font-size: 16px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Katalog Card -->
+        <div class="card">
+            <div class="icon icon-book">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                </svg>
+            </div>
+            <h2 class="card-title">Katalog Bulan ini</h2>
+            <p class="card-description">Temukan Informasi Promo dan Jenis Treatment yang Tepat untuk Anda di bulan ini</p>
+            <a href="katalog.html" class="btn">Baca Katalog</a>
+        </div>
+
+        <!-- Promo Card -->
+        <div class="card">
+            <div class="icon icon-tag">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
+                </svg>
+            </div>
+            <h2 class="card-title">Promo Terbaru</h2>
+            <p class="card-description">Dapatkan Promo Terbaru yang Menarik dari<br>Klinik Kecantikan Derma9</p>
+            <a href="promo.html" class="btn">Promo Terbaru</a>
+        </div>
+    </div>
+</body>
+</html>

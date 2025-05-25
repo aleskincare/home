@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Galeri Gambar Interaktif</title>
+  <style>
+    body {
+      text-align: center;
+      margin: 0;
+      margin-top: 60px;
+      /* Memberi ruang untuk navbar */
+      font-family: sans-serif;
+      background-color: goldenrod;
+      color: white;
+    }
+
+    /* Navbar tetap di atas */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0);
+      color: white;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      z-index: 1000;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .gambar-item {
+      display: block;
+      margin: 5px auto;
+      max-width: 100%;
+      cursor: pointer;
+      border: 2px solid #ccc;
+      transition: transform 0.3s ease;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .gambar-item:hover {
+      transform: scale(1.02);
+    }
+
+    /* Gaya untuk modal gallery */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 80vh;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10000;
+    }
+
+    .controls button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      background: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .btn {
+      background-color: rgb(240, 188, 56);
+      color: rgb(0, 0, 0);
+      border: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn:hover {
+      background-color: rgb(241, 174, 4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="btn">Kembali</a>
+  </nav>
+  <div id="gambarContainer"></div>
+
+  <!-- Tombol kontrol -->
+  <div class="controls" style="display: none;">
+    <button onclick="zoomOut()">-</button>
+    <button onclick="zoomIn()">+</button>
+  </div>
+
+  <!-- Close Button -->
+  <span class="close-btn" onclick="closeModal()" style="display: none;">&times;</span>
+
+  <!-- Modal Gallery -->
+  <div class="modal" id="myModal">
+    <img class="modal-content" id="imgModal" />
+  </div>
+
+  <script>
+    const container = document.getElementById('gambarContainer');
+    const modal = document.getElementById('myModal');
+    const modalImg = document.getElementById('imgModal');
+    const controls = document.querySelector('.controls');
+    const closeBtn = document.querySelector('.close-btn');
+
+    let currentZoom = 1;
+
+    // Generate gambar 1-26
+    for (let i = 21; i <= 27; i++) {
+      const img = document.createElement('img');
+      img.src = `images/${i}.jpg`;
+      img.alt = `Gambar ke-${i}`;
+      img.title = `Klik untuk lihat detail`;
+      img.className = 'gambar-item';
+      img.onclick = function () {
+        openModal(img.src);
+      };
+      container.appendChild(img);
+    }
+
+    function openModal(src) {
+      modal.style.display = 'flex';
+      controls.style.display = 'flex';
+      closeBtn.style.display = 'block';
+      modalImg.src = src;
+      currentZoom = 1;
+      modalImg.style.transform = `scale(${currentZoom})`;
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      controls.style.display = 'none';
+      closeBtn.style.display = 'none';
+    }
+
+    function zoomIn() {
+      if (currentZoom < 3) {
+        currentZoom += 0.2;
+        modalImg.style.transform = `scale(${currentZoom})`;
+      }
+    }
+
+    function zoomOut() {
+      if (currentZoom > 0.4) {
+        currentZoom -= 0.2;
+        modalImg.style.transform = `scale(${currentZoom})`;
+      }
+    }
+
+    // Tutup dengan tombol Esc
+    window.addEventListener('keydown', function (e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+  </script>
+
+</body>
+
+</html>
