@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"">
   <title>KATALOG</title>
   <style>
     body {
@@ -70,11 +70,12 @@
     }
 
     .modal-content {
-      max-width: 90%;
-      max-height: 80vh;
-      object-fit: contain;
-      transition: transform 0.3s ease;
-    }
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  will-change: transform; /* Optimasi performa */
+}
 
     .controls {
       position: fixed;
@@ -127,24 +128,25 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
+
     /* Gaya khusus untuk layar kecil */
-@media screen and (max-width: 768px) {
-  .controls button {
-    padding: 15px 20px;
-    font-size: 18px;
-  }
+    @media screen and (max-width: 768px) {
+      .controls button {
+        padding: 15px 20px;
+        font-size: 18px;
+      }
 
-  .close-btn {
-    font-size: 30px;
-    right: 20px;
-    top: 20px;
-  }
+      .close-btn {
+        font-size: 30px;
+        right: 20px;
+        top: 20px;
+      }
 
-  .btn {
-    padding: 20px 50px;
-    font-size: 16px;
-  }
-}
+      .btn {
+        padding: 20px 50px;
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 
@@ -152,7 +154,7 @@
 
   <!-- NAVBAR -->
   <nav>
-    <a href="index.html" class="btn">Kembali</a>
+    <a href=" index.html" class="btn">Kembali</a>
   </nav>
   <div id="gambarContainer"></div>
 
@@ -171,9 +173,101 @@
   </div>
 
   <script>
-    eval(atob("ICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdnYW1iYXJDb250YWluZXInKTsKICAgIGNvbnN0IG1vZGFsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ215TW9kYWwnKTsKICAgIGNvbnN0IG1vZGFsSW1nID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ltZ01vZGFsJyk7CiAgICBjb25zdCBjb250cm9scyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJy5jb250cm9scycpOwogICAgY29uc3QgY2xvc2VCdG4gPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcuY2xvc2UtYnRuJyk7CgogICAgbGV0IGN1cnJlbnRab29tID0gMTsKCiAgICAvLyBHZW5lcmF0ZSBnYW1iYXIgMS0yNgogICAgZm9yIChsZXQgaSA9IDE7IGkgPD0gMTg7IGkrKykgewogICAgICBjb25zdCBpbWcgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdpbWcnKTsKICAgICAgaW1nLnNyYyA9IGBpbWFnZXMvJHtpfS5qcGdgOwogICAgICBpbWcuYWx0ID0gYEdhbWJhciBrZS0ke2l9YDsKICAgICAgaW1nLnRpdGxlID0gYEtsaWsgdW50dWsgbGloYXQgZGV0YWlsYDsKICAgICAgaW1nLmNsYXNzTmFtZSA9ICdnYW1iYXItaXRlbSc7CiAgICAgIGltZy5vbmNsaWNrID0gZnVuY3Rpb24gKCkgewogICAgICAgIG9wZW5Nb2RhbChpbWcuc3JjKTsKICAgICAgfTsKICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKGltZyk7CiAgICB9CgogICAgZnVuY3Rpb24gb3Blbk1vZGFsKHNyYykgewogICAgICBtb2RhbC5zdHlsZS5kaXNwbGF5ID0gJ2ZsZXgnOwogICAgICBjb250cm9scy5zdHlsZS5kaXNwbGF5ID0gJ2ZsZXgnOwogICAgICBjbG9zZUJ0bi5zdHlsZS5kaXNwbGF5ID0gJ2Jsb2NrJzsKICAgICAgbW9kYWxJbWcuc3JjID0gc3JjOwogICAgICBjdXJyZW50Wm9vbSA9IDE7CiAgICAgIG1vZGFsSW1nLnN0eWxlLnRyYW5zZm9ybSA9IGBzY2FsZSgke2N1cnJlbnRab29tfSlgOwogICAgfQoKICAgIGZ1bmN0aW9uIGNsb3NlTW9kYWwoKSB7CiAgICAgIG1vZGFsLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICAgIGNvbnRyb2xzLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICAgIGNsb3NlQnRuLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICB9CgogICAgZnVuY3Rpb24gem9vbUluKCkgewogICAgICBpZiAoY3VycmVudFpvb20gPCAzKSB7CiAgICAgICAgY3VycmVudFpvb20gKz0gMC4yOwogICAgICAgIG1vZGFsSW1nLnN0eWxlLnRyYW5zZm9ybSA9IGBzY2FsZSgke2N1cnJlbnRab29tfSlgOwogICAgICB9CiAgICB9CgogICAgZnVuY3Rpb24gem9vbU91dCgpIHsKICAgICAgaWYgKGN1cnJlbnRab29tID4gMC40KSB7CiAgICAgICAgY3VycmVudFpvb20gLT0gMC4yOwogICAgICAgIG1vZGFsSW1nLnN0eWxlLnRyYW5zZm9ybSA9IGBzY2FsZSgke2N1cnJlbnRab29tfSlgOwogICAgICB9CiAgICB9CgogICAgLy8gVHV0dXAgZGVuZ2FuIHRvbWJvbCBFc2MKICAgIHdpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdrZXlkb3duJywgZnVuY3Rpb24gKGUpIHsKICAgICAgaWYgKGUua2V5ID09PSAiRXNjYXBlIikgewogICAgICAgIGNsb3NlTW9kYWwoKTsKICAgICAgfQogICAgfSk7"));
+    const container = document.getElementById('gambarContainer');
+    const modal = document.getElementById('myModal');
+    const modalImg = document.getElementById('imgModal');
+    const controls = document.querySelector('.controls');
+    const closeBtn = document.querySelector('.close-btn');
+
+    let currentZoom = 1;
+
+    // Generate gambar 1-26
+    for (let i = 21; i <= 27; i++) {
+      const img = document.createElement('img');
+      img.src = `images/${i}.jpg`;
+      img.alt = `Gambar ke-${i}`;
+      img.title = `Klik untuk lihat detail`;
+      img.className = 'gambar-item';
+      img.onclick = function () {
+        openModal(img.src);
+      };
+      container.appendChild(img);
+    }
+
+    function openModal(src) {
+      modal.style.display = 'flex';
+      controls.style.display = 'flex';
+      closeBtn.style.display = 'block';
+      modalImg.src = src;
+      currentZoom = 1;
+      modalImg.style.transform = `scale(${currentZoom})`;
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      controls.style.display = 'none';
+      closeBtn.style.display = 'none';
+    }
+
+    function zoomIn() {
+      if (currentZoom < 3) {
+        currentZoom += 0.2;
+        modalImg.style.transform = `scale(${currentZoom})`;
+      }
+    }
+
+    function zoomOut() {
+      if (currentZoom > 0.4) {
+        currentZoom -= 0.2;
+        modalImg.style.transform = `scale(${currentZoom})`;
+      }
+    }
+
+    // Tutup dengan tombol Esc
+    window.addEventListener('keydown', function (e) {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    let initialDistance = 0;
+    let lastZoom = 1;
+
+    modalImg.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 2) {
+        // Hitung jarak antara dua jari
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+        initialDistance = Math.hypot(
+          touch2.clientX - touch1.clientX,
+          touch2.clientY - touch1.clientY
+        );
+        lastZoom = currentZoom;
+      }
+    }, { passive: true });
+
+    modalImg.addEventListener('touchmove', function (e) {
+      if (e.touches.length === 2) {
+        e.preventDefault(); // Cegah scroll/zoom default browser
+
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+        const currentDistance = Math.hypot(
+          touch2.clientX - touch1.clientX,
+          touch2.clientY - touch1.clientY
+        );
+
+        const scaleRatio = currentDistance / initialDistance;
+        const newZoom = lastZoom * scaleRatio;
+
+        if (newZoom >= 0.4 && newZoom <= 3) {
+          currentZoom = newZoom;
+          modalImg.style.transform = `scale(${currentZoom})`;
+        }
+      }
+    }, { passive: false });
   </script>
 
-</body>
+  </body>
 
 </html>
